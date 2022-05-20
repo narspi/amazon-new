@@ -1,27 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
-import { useRouter } from 'next/router';
 import { StarIcon } from "@heroicons/react/solid";
-// import Currency from "react-currency-formatter";
 import { useDispatch } from 'react-redux';
 import {addToBasket as addToBasketAction } from '../slices/basketSlice';
 import hasPrimeImg from '../images/has-prime.png';
 
-
-
-const MIN_RATING = 3;
-const MAX_RATING = 5;
-
 function Product({item}) {
-  const { title, image, category, description, price, rating } = item;
-  const ratingCountStar = Math.round(rating.rate);
-  const [hasPrime] = useState(true);
+  const { title, image, category, description, price, rating, hasPrime } = item;
   const dispatch = useDispatch();
-  const router = useRouter();
-
-  
-  console.log(router.basePath)
- 
 
   const addToBasket = () => {
     dispatch(addToBasketAction(item));
@@ -32,10 +18,10 @@ function Product({item}) {
       <p className="absolute top-2 right-2 text-xs italic text-gray-400">
         {category}
       </p>
-      {/* <Image src={image} height={200} width={200} objectFit="contain" /> */}
+      <Image src={image} height={200} width={200} objectFit="contain" />
       <h3 className="my-3">{title}</h3>
       <div className="flex text-yellow-500">
-        {Array(ratingCountStar)
+        {Array(rating)
           .fill(1)
           .map((_, i) => (
             <StarIcon key={i} className="h-5" />
@@ -43,7 +29,7 @@ function Product({item}) {
       </div>
       <p className="text-xs my-2 line-clamp-2">{description}</p>
       <div className="mb-5">
-        {/* <Currency quantity={price}/> */}
+        ${price}
       </div>
       {hasPrime && (
         <div className="flex items-center space-x-2 -mt-5">

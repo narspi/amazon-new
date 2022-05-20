@@ -20,23 +20,23 @@ function ProductFeed({ products }) {
         alt="main banner"
       />
       <div className="md:col-span-2">
-      {/* {products
+      {products
           .slice(4, 5)
           .map((item) => (
             <Product
               key={item.id}
               item={item}
             />
-          ))} */}
+          ))}
       </div>
-      {/* {products
+      {products
         .slice(5, products.length)
         .map((item) => (
           <Product
             key={item.id}
             item={item}
           />
-        ))} */}
+        ))}
     </div>
   );
 }
